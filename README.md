@@ -40,13 +40,14 @@ Basicamente 1000 tokens são equivalentes a 750 palavras (incluindo sua pergunta
 #### Conecta com openai API
 
 ```http
-await getOpenaiClient(process.env.OPENAI_KEY);
+const openai_key = "" // your personal openai KEY
+await getOpenaiClient(openai_key);
 ```
-No caso, a key que está no .env já está invalida!
+No caso, a key que está no programa já está inválida.
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `OPENAI_KEY` | `string` | **Obrigatório**. A chave da sua conta openai |
+| `openai_key` | `string` | **Obrigatório**. A chave da sua conta openai |
 
 
 
