@@ -42,6 +42,7 @@ Basicamente 1000 tokens são equivalentes a 750 palavras (incluindo sua pergunta
 ```http
 await getOpenaiClient(process.env.OPENAI_KEY);
 ```
+No caso, a key que está no .env já está invalida!
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
