@@ -1,7 +1,7 @@
 const { getOpenaiClient } = require('../connectToOpenAI/connect.js');
 const { generateChatResponse } = require('../requests/textQuestion.js');
 
-const openai_key = "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" // your personal openai KEY
+const openai_key = "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" // your personal openai KEY
 
 const connectToOpenai = async function () {
   //connect with your api_key

@@ -1,58 +1,15 @@
-let buttonSend = document.getElementById("botao-enviar");
-let promptArea = document.getElementById("area-prompt");
+const { app } = require('./src/server.js');
+const { pageApp } = require('./src/pageServer.js');
+const apiApp = app;
+const app1 = pageApp;
 
-let responseArea = document.getElementById("area-resposta");
+let apiPort = '5064';
+let pagePort = 4605;
 
-const sleep = function (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-};
+apiApp.listen(apiPort, () => {
+  console.log('api rodando na porta ' + apiPort);
+});
 
-buttonSend.addEventListener('click', async () => {
-  let prompt = promptArea.value;
-  let requestOk = false;
-
-  await fetch("http://127.0.0.1:5064/")
-    .then(async (response) => {
-      if (response.status == 200) {
-        let responseText = await response.text();
-        if (responseText != 'Servidor rodando perfeitamente') {
-          responseArea.textContent = 'erro => abra o servidor antes';
-          return
-        };
-        requestOk = true;
-      } else {
-        console.log('Erro ' + response.status);
-        requestOk = false;
-      }
-    })
-    .catch(error => {
-      console.log("erro no fetch: " + error);
-      alert('erro => abra o servidor antes');
-      requestOk = false;
-    })
-
-  if (requestOk == true) {
-    let intervalo = setInterval(async () => {
-      responseArea.textContent = 'gerando.';
-      await sleep(200);
-      responseArea.textContent = 'gerando..';
-      await sleep(200);
-      responseArea.textContent = 'gerando...';
-    }, 500);
-
-
-    await fetch(`http://127.0.0.1:5064/generateAnswer?prompt="${prompt}"`)
-      .then(async (response) => {
-        if (response.status == 200) {
-          let responseText = await response.text();
-          clearInterval(intervalo);
-          await sleep(2000);
-          responseArea.textContent = responseText;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-
-  };
+pageApp.listen(pagePort, () => {
+  console.log(`Site aberto em: http://127.0.0.1:${pagePort}`);
 });

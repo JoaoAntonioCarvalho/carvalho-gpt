@@ -6,7 +6,6 @@ const { runBot, connectToOpenai } = require('./runBot.js');
 
 app.use(cors()); // add this line to enable CORS
 
-let port = '5064';
 app.get('/', (req, res) => {
   res.status = 200;
   res.send('Servidor rodando perfeitamente');
@@ -28,6 +27,4 @@ app.get('/generateAnswer', async (req, res) => {
   };
 });
 
-app.listen(port, () => {
-  console.log('servidor rodando na porta ' + port);
-});
+module.exports = { app }
